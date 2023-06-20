@@ -1,7 +1,7 @@
 "use client";
 import Chart from "react-apexcharts";
 
-export default function Chartt() {
+export default function ApexChart() {
 	return (
 		<div>
 			<Chart
