@@ -16,16 +16,16 @@ export default function UploadForm() {
 	const [uploadData, { isLoading }] = usePost("/api/data");
 
 	const onSubmit = async (data: Inputs) => {
-		const formData = new FormData();
-
 		for (let i = 0; i < data.file.length; i++) {
 			const file = data.file[i];
 			const fileData = await parseJsonFile(file); // Get parsed data from file
 
-			formData.append("name", file.name);
-			formData.append("timeOpen", String(fileData.timeOpen));
-			formData.append("timeClose", String(fileData.timeClose));
-			formData.append("data", JSON.stringify(fileData.data));
+			// formData.append("name", file.name);
+			// formData.append("timeOpen", String(fileData.timeOpen));
+			// formData.append("timeClose", String(fileData.timeClose));
+			// formData.append("data", JSON.stringify(fileData.data));
+			fileData.name = file.name;
+			console.log(fileData);
 			await uploadData(fileData);
 		}
 	};

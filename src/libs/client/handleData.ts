@@ -1,6 +1,11 @@
 export const parseJsonFile = (
 	file: File
-): Promise<{ timeOpen: number; timeClose: number; data: any }> => {
+): Promise<{
+	timeOpen: number;
+	timeClose: number;
+	data: any;
+	name?: string;
+}> => {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
 

@@ -13,19 +13,18 @@ datasource db {
 
 model User {
   id              Int           @id @default(autoincrement())
-  password        String
-  name            String
+  password        String?
+  name            String?
   email           String        @unique
   totalStar       Int           @default(0)
   createdAt       DateTime      @default(now())
-
 }
 
 model btcusd{
 	id              Int           @id @default(autoincrement())
 	name						String
 	data 						Json
-	timeOpen				Int
-	timeClose		  	Int
+	timeOpen				String				@unique
+	timeClose		  	String				@unique
   createdAt       DateTime      @default(now())
 }

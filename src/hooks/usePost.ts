@@ -12,7 +12,7 @@ export default function usePost(url: string): [(data?: any) => void, IObj] {
 	const [error, setError] = useState<undefined | any>(undefined);
 	function mutation(data?: any) {
 		setIsLoading(true);
-		console.log("hook", JSON.stringify(data));
+		console.log("hook", data);
 		fetch(url, {
 			method: "POST",
 			body: JSON.stringify(data),
