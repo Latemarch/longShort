@@ -18,4 +18,14 @@ model User {
   email           String        @unique
   totalStar       Int           @default(0)
   createdAt       DateTime      @default(now())
+
+}
+
+model btcusd{
+	id              Int           @id @default(autoincrement())
+	name						String
+	data 						Json
+	timeOpen				Int
+	timeClose		  	Int
+  createdAt       DateTime      @default(now())
 }
