@@ -18,6 +18,7 @@ model User {
   email           String        @unique
   totalStar       Int           @default(0)
   createdAt       DateTime      @default(now())
+	histories				History[]
 }
 
 model btcusd{
@@ -27,4 +28,17 @@ model btcusd{
 	timeOpen				String				@unique
 	timeClose		  	String				@unique
   createdAt       DateTime      @default(now())
+}
+
+
+model History{
+	id              Int           @id @default(autoincrement())
+	name						String
+	data 						Json
+	timeOpen				String				@unique
+	timeClose		  	String				@unique
+	createdAt       DateTime      @default(now())
+	user						User						@relation(fields: [userId], references: [id])
+	userId					Int
+	@@index([userId])
 }
