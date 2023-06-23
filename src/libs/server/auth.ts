@@ -3,13 +3,20 @@ import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
-	session: {
-		strategy: "jwt",
-	},
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_OAUTH_ID!!,
 			clientSecret: process.env.GOOGLE_OAUTH_SECRET!!,
 		}),
 	],
+	callbacks: {
+		async session({ session, token }) {
+			// console.log("session", session);
+			// console.log("token", token);
+			return session;
+		},
+	},
+	pages: {
+		signIn: "/auth/signin",
+	},
 };

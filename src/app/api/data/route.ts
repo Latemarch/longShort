@@ -1,17 +1,16 @@
-import prisma from "@/libs/client/client";
+import client from "@/libs/client/client";
 import { btcusd } from "@prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET(res: Response, req: Request) {
-	console.log("get data");
-	console.log(req);
+	console.log("/api/data");
 	return NextResponse.json({ data: "hellow" });
 }
 
 export async function POST(res: Response, req: Request) {
 	const { name, timeOpen, timeClose, data } = (await res.json()) as btcusd;
 
-	const exsitingFile = await prisma.btcusd.findUnique({
+	const exsitingFile = await client.btcusd.findUnique({
 		where: { timeOpen: String(timeOpen) },
 	});
 
@@ -28,7 +27,7 @@ export async function POST(res: Response, req: Request) {
 		});
 	}
 
-	const result = await prisma.btcusd.create({
+	const result = await client.btcusd.create({
 		data: {
 			name,
 			timeClose: String(timeClose),
