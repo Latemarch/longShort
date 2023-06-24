@@ -2,6 +2,8 @@ import AuthContext from "@/context/AuthContext";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
+import store from "@/redux/store/store";
+import Provider from "@/redux/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,9 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<AuthContext>
 					<NavBar />
-					<main>{children}</main>
+					<Provider>
+						<main>{children}</main>
+					</Provider>
 				</AuthContext>
 			</body>
 		</html>

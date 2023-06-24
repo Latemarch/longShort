@@ -1,18 +1,24 @@
 import fs from "fs";
 import path from "path";
-import Trading from "./compoenents/Trading";
+import ChartContainer from "./compoenents/ChartContainer";
+import { Suspense } from "react";
 
+type candles = number[][];
 export default async function mocktraiding() {
-	const fileNumber = getRandomInt(1, 64);
 	const openTime = getRandomInt(100, 1239);
-
+	// const fileNumber = getRandomInt(1, 64);
 	// const candles = await fetch(`http://localhost:3000/api/data/${fileNumber}`) //
 	// .then((res) => res.json());
 
-	const candles = await getCandle();
-	candles && console.log(candles.slice(0, 10));
+	const candles = (await getCandle()) as candles;
 	return (
-		<div>{candles && <Trading candles={candles} openTime={openTime} />}</div>
+		<section>
+			{candles && (
+				<Suspense>
+					<ChartContainer candles={candles} openTime={openTime} />
+				</Suspense>
+			)}
+		</section>
 	);
 }
 

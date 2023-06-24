@@ -1,4 +1,4 @@
-import ApexChart from "@/components/CandleStickChart";
+import ApexChart from "@/app/mocktrading/compoenents/TradingSection";
 import ConvertBtn from "@/components/ConvertBtn";
 import { Suspense } from "react";
 
