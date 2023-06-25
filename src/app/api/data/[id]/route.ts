@@ -1,8 +1,8 @@
 import client from "@/libs/client/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-	req: Request,
+	req: NextRequest,
 	{ params: { id } }: { params: { id: string } }
 ) {
 	const data = await client.btcusd.findUnique({
