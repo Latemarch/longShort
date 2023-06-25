@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import ChartContainer from "./compoenents/ChartContainer";
 import { Suspense } from "react";
+import { useSelector } from "react-redux";
 
 type candles = number[][];
 export default async function mocktraiding() {
