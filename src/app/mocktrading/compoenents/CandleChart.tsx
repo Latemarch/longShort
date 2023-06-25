@@ -11,18 +11,20 @@ export default function CandleChart({ data }: { data: any }) {
 	const { yaxis } = useSelector((state: Slice) => state.annotations);
 	const options = chartOptions;
 	return (
-		<Chart
-			options={{
-				...options, //
-				annotations: { yaxis },
-			}}
-			series={[
-				{
-					data,
-				},
-			]}
-			type="candlestick"
-			height={350}
-		/>
+		<div className="bg-gray-100 p-4 px-2 my-2 rounded-xl">
+			<Chart
+				options={{
+					...options, //
+					annotations: { yaxis },
+				}}
+				series={[
+					{
+						data,
+					},
+				]}
+				type="candlestick"
+				height={350}
+			/>
+		</div>
 	);
 }

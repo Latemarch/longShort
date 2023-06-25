@@ -25,7 +25,7 @@ export default function ChartContainer({ candles, openTime }: Props) {
 	const data = candleObj.slice(startPoint, startPoint + 40);
 	const price = Number(data[data.length - 1].y[3]);
 	return (
-		<section className="p-4">
+		<section>
 			<CandleChart data={data} />
 			<div className="flex flex-col gap-2 justify-around ">
 				<div className="flex gap-2">

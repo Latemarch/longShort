@@ -3,6 +3,7 @@ import path from "path";
 // import ChartContainer from "./compoenents/ChartContainer";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import HistoryPannel from "./compoenents/HistoryPannel";
 const ChartContainer = dynamic(() => import("./compoenents/ChartContainer"), {
 	ssr: false,
 });
@@ -16,10 +17,11 @@ export default async function mocktraiding() {
 
 	const candles = (await getCandle()) as candles;
 	return (
-		<section>
+		<section className="p-4">
 			<Suspense fallback={<div>Loading...</div>}>
 				<ChartContainer candles={candles} openTime={openTime} />
 			</Suspense>
+			<HistoryPannel />
 		</section>
 	);
 }
