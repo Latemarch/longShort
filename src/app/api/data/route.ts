@@ -2,11 +2,6 @@ import client from "@/libs/client/client";
 import { btcusd } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-export async function GET(res: Response, req: Request) {
-	console.log("/api/data");
-	return NextResponse.json({ data: "hellow" });
-}
-
 export async function POST(res: Response, req: Request) {
 	const { name, timeOpen, timeClose, data } = (await res.json()) as btcusd;
 
