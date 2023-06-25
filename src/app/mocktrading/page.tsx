@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
-import ChartContainer from "./compoenents/ChartContainer";
+// import ChartContainer from "./compoenents/ChartContainer";
 import { Suspense } from "react";
-import { useSelector } from "react-redux";
+import dynamic from "next/dynamic";
+const ChartContainer = dynamic(() => import("./compoenents/ChartContainer"), {
+	ssr: false,
+});
 
 type candles = number[][];
 export default async function mocktraiding() {
@@ -14,11 +17,9 @@ export default async function mocktraiding() {
 	const candles = (await getCandle()) as candles;
 	return (
 		<section>
-			{candles && (
-				<Suspense>
-					<ChartContainer candles={candles} openTime={openTime} />
-				</Suspense>
-			)}
+			<Suspense fallback={<div>Loading...</div>}>
+				<ChartContainer candles={candles} openTime={openTime} />
+			</Suspense>
 		</section>
 	);
 }

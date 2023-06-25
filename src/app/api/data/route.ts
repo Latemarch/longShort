@@ -1,9 +1,8 @@
 import client from "@/libs/client/client";
-import { btcusd } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(res: NextResponse) {
-	const { name, timeOpen, timeClose, data } = (await res.json()) as btcusd;
+export async function POST(res: NextRequest) {
+	const { name, timeOpen, timeClose, data } = await res.json();
 
 	const exsitingFile = await client.btcusd.findUnique({
 		where: { timeOpen: String(timeOpen) },

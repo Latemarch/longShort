@@ -19,15 +19,12 @@ type Props = {
 };
 export default function TradingBtn({ name, price }: Props) {
 	const { wallet } = useSelector((state: any) => state.wallet);
-	console.log(wallet);
 	const dispatch = useDispatch();
 	const handleAnnotation = (e: MouseEvent<HTMLButtonElement>) => {
 		if (name === "buy") {
 			dispatch(addLongPosition(price));
 			dispatch(setWallet(price));
-			console.log(wallet.position);
 		} else if (wallet.position.size > 0) {
-			console.log("sellling");
 			dispatch(removeLongPosition());
 			dispatch(clearPosition(price));
 		}
