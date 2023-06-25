@@ -1,7 +1,7 @@
 import client from "@/libs/client/client";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(res: NextRequest) {
+export async function POST(res: any) {
 	const { name, timeOpen, timeClose, data } = await res.json();
 
 	const exsitingFile = await client.btcusd.findUnique({
