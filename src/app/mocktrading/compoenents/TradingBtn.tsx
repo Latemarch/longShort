@@ -4,6 +4,7 @@ import {
 	addLongPosition,
 	removeLongPosition,
 } from "@/redux/slices/annotationSlice";
+import { closeHistory, openHistory } from "@/redux/slices/historySlice";
 import { clearPosition, setWallet } from "@/redux/slices/walletSlice";
 import { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,11 +23,18 @@ export default function TradingBtn({ name, price }: Props) {
 	const dispatch = useDispatch();
 	const handleAnnotation = (e: MouseEvent<HTMLButtonElement>) => {
 		if (name === "buy") {
-			dispatch(addLongPosition(price));
-			dispatch(setWallet(price));
-		} else if (wallet.position.size > 0) {
+			if (wallet.position.side !== "buy") {
+				dispatch(addLongPosition(price));
+				dispatch(setWallet(price));
+				dispatch(openHistory({ side: "long", size: 100, open: price }));
+			}
+		} else if (wallet.position.side === "buy") {
+			const profit = Number(
+				(((price - wallet.position.entryPrice) / price) * 100).toFixed(2)
+			);
 			dispatch(removeLongPosition());
 			dispatch(clearPosition(price));
+			dispatch(closeHistory({ close: price, profit }));
 		}
 	};
 	return (

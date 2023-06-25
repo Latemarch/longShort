@@ -10,9 +10,13 @@ export const authOptions: NextAuthOptions = {
 		}),
 	],
 	callbacks: {
+		async signIn({ user }) {
+			console.log("user", user);
+			return true;
+		},
 		async session({ session, token }) {
-			// console.log("session", session);
-			// console.log("token", token);
+			console.log("session", session);
+			console.log("token", token);
 			return session;
 		},
 	},
