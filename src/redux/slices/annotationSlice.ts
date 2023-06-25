@@ -13,7 +13,7 @@ export const annotationSlice = createSlice({
 		addLongPosition: (state, action: PayloadAction<number>) => {
 			state.yaxis.push({
 				y: action.payload,
-				y2: action.payload + 5,
+				y2: action.payload + 3,
 				fillColor: colorLong,
 				borderColor: colorLong,
 			});

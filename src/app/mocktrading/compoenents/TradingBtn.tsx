@@ -6,7 +6,7 @@ import {
 } from "@/redux/slices/annotationSlice";
 import { closeHistory, openHistory } from "@/redux/slices/historySlice";
 import { clearPosition, setWallet } from "@/redux/slices/walletSlice";
-import { MouseEvent } from "react";
+import { MouseEvent, use } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export type Wallet = {
@@ -16,9 +16,9 @@ export type Wallet = {
 };
 type Props = {
 	name: string;
-	price: number;
 };
-export default function TradingBtn({ name, price }: Props) {
+export default function TradingBtn({ name }: Props) {
+	const price = useSelector((state: any) => state.price);
 	const { wallet } = useSelector((state: any) => state.wallet);
 	const dispatch = useDispatch();
 	const handleAnnotation = (e: MouseEvent<HTMLButtonElement>) => {

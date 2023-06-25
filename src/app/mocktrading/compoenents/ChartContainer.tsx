@@ -1,8 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CandleChart from "./CandleChart";
 import ButtonContainer from "./ButtonContainer";
 import MyWallet from "./MyWallet";
+import { useDispatch } from "react-redux";
+import { setPrice } from "@/redux/slices/priceSlice";
 
 type Props = {
 	candles: number[][];
@@ -11,6 +13,7 @@ type Props = {
 export default function ChartContainer({ candles, openTime }: Props) {
 	const [startPoint, setStartPoint] = useState(openTime);
 	const [count, setCount] = useState(200);
+	const dispatch = useDispatch();
 
 	const candleObj = candles.map((candle, idx) => ({
 		x: idx + 1 - openTime,
@@ -27,9 +30,13 @@ export default function ChartContainer({ candles, openTime }: Props) {
 	const handleClick = () => {
 		setStartPoint((prev) => prev + 1);
 		setCount((prev) => prev - 1);
+		dispatch(setPrice(price));
 	};
+	useEffect(() => {
+		dispatch(setPrice(price));
+	}, []);
 	return (
-		<section>
+		<section className="w-full">
 			<CandleChart data={data} />
 			<div className="flex flex-col gap-2 justify-around ">
 				<div className="flex gap-2">
@@ -50,8 +57,6 @@ export default function ChartContainer({ candles, openTime }: Props) {
 						NEXT({count})
 					</button>
 				</div>
-				<ButtonContainer price={price} />
-				<MyWallet price={price} />
 			</div>
 		</section>
 	);

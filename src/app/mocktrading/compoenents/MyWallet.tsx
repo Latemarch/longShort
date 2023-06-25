@@ -3,7 +3,8 @@
 import { useSelector } from "react-redux";
 
 const styles = "flex flex-col items-center ";
-export default function MyWallet({ price }: { price: number }) {
+export default function MyWallet() {
+	const price = useSelector((state: any) => state.price);
 	const {
 		wallet: {
 			position: { side, size, entryPrice },

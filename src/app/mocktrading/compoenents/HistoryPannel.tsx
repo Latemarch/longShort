@@ -9,10 +9,9 @@ type TState = {
 export default function HistoryPannel() {
 	const history = useSelector((state: TState) => state.history);
 	const { wallet } = useSelector((state: any) => state.wallet);
-	console.log(wallet);
 	// if (!history.length) return;
 	return (
-		<div className="p-4 bg-gray-200 my-6 rounded-lg">
+		<div className="p-4 bg-gray-200 my-6 rounded-lg h-full">
 			<div className="flex p-2 justify-between border-solid border-b-2 border-gray-500">
 				<h2>History</h2>
 				<div className="flex">
