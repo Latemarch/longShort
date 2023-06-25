@@ -10,15 +10,15 @@ export async function POST(res: any) {
 
 	if (exsitingFile) {
 		console.log(`file is already exsist ${timeOpen}`);
-		return new Response(`File is already exsist ${timeOpen}`, {
-			status: 409,
-		});
+		// return new Response(`File is already exsist ${timeOpen}`, {
+		// 	status: 409,
+		// });
 	}
 	if (!data) {
 		console.log("Data is not exsist");
-		return new Response("Data is not exsist", {
-			status: 400,
-		});
+		// return new Response("Data is not exsist", {
+		// status: 400,
+		// });
 	}
 
 	const result = await client.btcusd.create({
