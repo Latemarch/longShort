@@ -16,7 +16,7 @@ export default function MyWallet() {
 	const pStyles = `${side === "buy" ? "text-green-500" : "text-red-500"}`;
 	const profit = ((price - entryPrice) / price) * 100;
 	return (
-		<div className="flex items-center justify-center bg-gray-100 rounded-md h-20 ">
+		<div className="flex items-center justify-center bg-DarkChart rounded-md h-20 ">
 			{side ? (
 				<div className="flex items-center justify-around w-full px-4">
 					<div className={styles}>
