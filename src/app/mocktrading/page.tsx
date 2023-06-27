@@ -8,16 +8,15 @@ const ChartContainer = dynamic(() => import("./compoenents/ChartContainer"), {
 	ssr: false,
 });
 
-const url = process.env.NEXT_PUBLIC_API_URL!!;
 type candles = number[][];
 export default async function mocktraiding() {
 	const openTime = getRandomInt(100, 1239);
-	const fileNumber = getRandomInt(1, 64);
+	const fileNumber = getRandomInt(1, 64).toString();
 	// const candles = await fetch(`${url}/api/data/${fileNumber}`);
 	// 	.then((res) => res.json())
 	// 	.then((data) => data.data);
 	// const candles = (await getCandle()) as candles;
-	const candles = await getCandles(`${url}/api/data/${fileNumber}`);
+	const candles = await getCandles(fileNumber);
 
 	return (
 		<section className="h-full p-4 md:flex md:gap-3">
