@@ -1,8 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import CandleChart from "./CandleChart";
-import ButtonContainer from "./ButtonContainer";
-import MyWallet from "./MyWallet";
 import { useDispatch } from "react-redux";
 import { setPrice } from "@/redux/slices/priceSlice";
 
@@ -30,15 +28,14 @@ export default function ChartContainer({ candles, openTime }: Props) {
 	const handleClick = () => {
 		setStartPoint((prev) => prev + 1);
 		setCount((prev) => prev - 1);
-		dispatch(setPrice(price));
 	};
 	useEffect(() => {
 		dispatch(setPrice(price));
-	}, []);
+	}, [count]);
 	return (
-		<section className="w-full">
+		<section className="w-full md:h-48">
 			<CandleChart data={data} />
-			<div className="flex flex-col gap-2 justify-around ">
+			<div className="flex flex-col gap-2 justify-around">
 				<div className="flex gap-2">
 					<div className="flex flex-col items-start p-2 justify-between h-16 w-1/2 bg-blue-200 text-sm">
 						<div className="flex justify-between w-full px-2">

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import HistoryPannel from "./compoenents/HistoryPannel";
 import { getCandle, getRandomInt } from "@/libs/client/utils";
@@ -12,7 +11,9 @@ type candles = number[][];
 export default async function mocktraiding() {
 	const openTime = getRandomInt(100, 1239);
 	// const fileNumber = getRandomInt(1, 64);
-	// const candles = await fetch(`http://localhost:3000/api/data/${fileNumber}`) //
+	// const candles = await fetch(`http://localhost:3000/api/data/${fileNumber}`, {
+	// 	cache: "no-store",
+	// })
 	// 	.then((res) => res.json())
 	// 	.then((data) => data.data);
 	const candles = (await getCandle()) as candles;

@@ -1,6 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 // import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import addUser from "../client/addUser";
 
 export const authOptions: NextAuthOptions = {
 	providers: [
@@ -15,8 +16,9 @@ export const authOptions: NextAuthOptions = {
 			return true;
 		},
 		async session({ session, token }) {
-			console.log("session", session);
-			console.log("token", token);
+			// console.log("session", session);
+			// console.log("token", token);
+			addUser(token.email);
 			return session;
 		},
 	},
