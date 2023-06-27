@@ -11,11 +11,11 @@ const url = process.env.NEXT_PUBLIC_API_URL!!;
 type candles = number[][];
 export default async function mocktraiding() {
 	const openTime = getRandomInt(100, 1239);
-	// const fileNumber = getRandomInt(1, 64);
-	// const candles = await fetch(`${url}/api/data/${fileNumber}`)
-	// 	.then((res) => res.json())
-	// 	.then((data) => data.data);
-	const candles = (await getCandle()) as candles;
+	const fileNumber = getRandomInt(1, 64);
+	const candles = await fetch(`${url}/api/data/${fileNumber}`)
+		.then((res) => res.json())
+		.then((data) => data.data);
+	// const candles = (await getCandle()) as candles;
 
 	return (
 		<section className="p-4 md:flex md:gap-3">

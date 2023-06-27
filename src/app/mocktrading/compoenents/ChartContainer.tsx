@@ -16,7 +16,7 @@ type Props = {
 export default function ChartContainer({ candles, openTime }: Props) {
 	const [startPoint, setStartPoint] = useState(openTime);
 	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [count, setCount] = useState(20);
+	const [count, setCount] = useState(100);
 	const [updateBalance] = usePost("/api/user/balance");
 	const { wallet } = useSelector((state: any) => state.wallet);
 	const dispatch = useDispatch();
