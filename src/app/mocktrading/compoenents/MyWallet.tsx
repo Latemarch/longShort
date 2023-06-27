@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const styles = "flex flex-col items-center ";
@@ -10,6 +11,7 @@ export default function MyWallet() {
 			position: { side, size, entryPrice },
 		},
 	} = useSelector((state: any) => state.wallet);
+	useEffect(() => {}, []);
 
 	const pStyles = `${side === "buy" ? "text-green-500" : "text-red-500"}`;
 	const profit = ((price - entryPrice) / price) * 100;
@@ -34,7 +36,7 @@ export default function MyWallet() {
 					<div className={styles}>
 						<p>PROFIT</p>
 						<p className={`${profit >= 0 ? "text-green-500" : "text-red-500"}`}>
-							{profit.toFixed(2)}
+							{profit.toFixed(2)}%
 						</p>
 					</div>
 				</div>

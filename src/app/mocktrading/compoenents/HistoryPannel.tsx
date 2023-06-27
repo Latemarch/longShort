@@ -15,22 +15,24 @@ export default function HistoryPannel() {
 			<div className="flex p-2 justify-between border-solid border-b-2 border-gray-500">
 				<h2>History</h2>
 				<div className="flex">
-					<p>Balance: </p>
-					<p>{wallet.balance.toFixed(2)} </p>
+					<p className="mr-4">Balance: </p>
+					<p>${wallet.balance.toFixed(2)} </p>
 				</div>
 			</div>
 			<div className="flex justify-between p-2 w-full">
 				{Object.keys(history)
-					.slice(0, 4)
+					.slice(1, 4)
 					.map((key) => (
 						<div className="flex flex-col text-center" key={key}>
-							<p className="text-gray-500 ">{key}</p>
+							<p className="text-gray-500 mb-2">{key}</p>
 							{history[key].length > 0 &&
-								history[key].map((item: any) => <p key={uuid()}>{item}</p>)}
+								history[key].map((item: any) => (
+									<p key={uuid()}>{key !== "size" ? item : item.toFixed(2)}</p>
+								))}
 						</div>
 					))}
 				<div className="flex flex-col text-center">
-					<p className={`text-gray-${500}`}>profit</p>
+					<p className={`text-gray-${500} mb-2`}>profit</p>
 					{history.profit.length > 0 &&
 						history.profit.map((item: any) => (
 							<p

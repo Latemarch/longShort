@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export type History = {
+	balance: number[];
 	side: string[];
 	size: number[];
 	open: number[];
@@ -9,6 +10,7 @@ export type History = {
 	[key: string]: any;
 };
 const initialState: History = {
+	balance: [],
 	side: [],
 	size: [],
 	open: [],
@@ -21,7 +23,8 @@ export const historySlice = createSlice({
 	initialState,
 	reducers: {
 		openHistory: (state, action: PayloadAction<any>) => {
-			const { side, size, open } = action.payload;
+			const { balance, side, size, open } = action.payload;
+			state.balance.push(balance);
 			state.side.push(side);
 			state.size.push(size);
 			state.open.push(open);

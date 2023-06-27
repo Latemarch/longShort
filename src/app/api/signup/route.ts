@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request, res: Response) {
 	const email = await req.json();
 
-	console.log("signup", email);
 	const exsitingUser = await client.user.findUnique({
 		where: { email },
 	});

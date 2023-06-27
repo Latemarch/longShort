@@ -25,24 +25,30 @@ export const walletSlice = createSlice({
 	name: "wallet",
 	initialState,
 	reducers: {
-		setWallet: (state, action: PayloadAction<number>) => {
-			state.wallet.position.size = 100;
-			state.wallet.position.side = "buy";
-			state.wallet.position.entryPrice = action.payload;
+		setBalance: (state, action: PayloadAction<number>) => {
+			state.wallet.balance = action.payload;
+		},
+		setPosition: (state, action: PayloadAction<number>) => {
+			const { balance, position } = state.wallet;
+			position.size = Number(balance.toFixed(2));
+			console.log(position.size, balance.toFixed(2));
+			position.side = "buy";
+			position.entryPrice = action.payload;
 		},
 		clearPosition: (state, action: PayloadAction<number>) => {
 			const {
 				balance,
-				position: { entryPrice },
+				position,
+				position: { entryPrice, size },
 			} = state.wallet;
 			const { payload: price } = action;
-			state.wallet.position.size = 0;
-			state.wallet.position.side = null;
-			const profit = ((price - entryPrice) / entryPrice) * 100;
-			state.wallet.balance = balance + profit;
+			position.side = null;
+
+			const profit = (price - entryPrice) / entryPrice;
+			state.wallet.balance = balance + profit * size;
 		},
 	},
 });
 
-export const { setWallet, clearPosition } = walletSlice.actions;
+export const { setBalance, setPosition, clearPosition } = walletSlice.actions;
 export default walletSlice.reducer;

@@ -13,7 +13,7 @@ export default function UploadForm() {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<Inputs>();
-	const [uploadData, { isLoading }] = usePost("/api/data");
+	const [uploadData] = usePost("/api/data");
 
 	const onSubmit = async (data: Inputs) => {
 		for (let i = 0; i < data.file.length; i++) {

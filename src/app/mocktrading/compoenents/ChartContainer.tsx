@@ -1,8 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
 import CandleChart from "./CandleChart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setPrice } from "@/redux/slices/priceSlice";
+import Modal from "./Modal";
+import { Session } from "next-auth";
+import { setBalance } from "@/redux/slices/walletSlice";
+import { getUserBalance } from "@/libs/server/fetchingFtns";
+import usePost from "@/hooks/usePost";
 
 type Props = {
 	candles: number[][];
@@ -10,7 +15,10 @@ type Props = {
 };
 export default function ChartContainer({ candles, openTime }: Props) {
 	const [startPoint, setStartPoint] = useState(openTime);
-	const [count, setCount] = useState(200);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [count, setCount] = useState(20);
+	const [updateBalance] = usePost("/api/user/balance");
+	const { wallet } = useSelector((state: any) => state.wallet);
 	const dispatch = useDispatch();
 
 	const candleObj = candles.map((candle, idx) => ({
@@ -31,9 +39,25 @@ export default function ChartContainer({ candles, openTime }: Props) {
 	};
 	useEffect(() => {
 		dispatch(setPrice(price));
+		if (count === 0) {
+			setIsModalOpen(true);
+			updateBalance(wallet.balance);
+		}
 	}, [count]);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			const initialBalance = await getUserBalance();
+			console.log(initialBalance);
+			if (initialBalance && initialBalance > 90) {
+				dispatch(setBalance(initialBalance));
+			}
+		};
+		fetchData();
+	}, []);
 	return (
 		<section className="w-full md:h-48">
+			<Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
 			<CandleChart data={data} />
 			<div className="flex flex-col gap-2 justify-around">
 				<div className="flex gap-2">
