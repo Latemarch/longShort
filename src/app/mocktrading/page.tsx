@@ -3,6 +3,7 @@ import HistoryPannel from "./compoenents/HistoryPannel";
 import { getRandomInt } from "@/libs/client/utils";
 import ButtonContainer from "./compoenents/ButtonContainer";
 import MyWallet from "./compoenents/MyWallet";
+import NavBar from "@/components/NavBar";
 const ChartContainer = dynamic(() => import("./compoenents/ChartContainer"), {
 	ssr: false,
 });
@@ -18,7 +19,7 @@ export default async function mocktraiding() {
 	// const candles = (await getCandle()) as candles;
 
 	return (
-		<section className="flex h-full p-4 md:flex md:gap-3">
+		<section className="h-full p-4 md:flex md:gap-3">
 			<ChartContainer candles={candles} openTime={openTime} />
 			<div className="flex flex-col w-full">
 				<div className="mb-4 mt-2">
