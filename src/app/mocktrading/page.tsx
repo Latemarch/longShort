@@ -7,8 +7,8 @@ const ChartContainer = dynamic(() => import("./compoenents/ChartContainer"), {
 	ssr: false,
 });
 
-const url = process.env.NEXT_PUBLIC_API_URL!!;
-type candles = number[][];
+// const url = process.env.NEXT_PUBLIC_API_URL!!;
+// type candles = number[][];
 export default async function mocktraiding() {
 	const openTime = getRandomInt(100, 1239);
 	const fileNumber = getRandomInt(1, 64);
