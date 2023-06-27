@@ -16,6 +16,7 @@ model User {
   password        String?
   name            String?
   email           String        @unique
+	balance 				Float					@default(100)
   totalStar       Int           @default(0)
   createdAt       DateTime      @default(now())
 	histories				HistoryMT[]
