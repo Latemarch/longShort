@@ -11,7 +11,7 @@ export default function HistoryPannel() {
 	const { wallet } = useSelector((state: any) => state.wallet);
 	// if (!history.length) return;
 	return (
-		<div className="p-4 bg-gray-200 my-6 rounded-lg h-full">
+		<div className="p-4  bg-DarkChart mt-4 rounded-lg h-full">
 			<div className="flex p-2 justify-between border-solid border-b-2 border-gray-500">
 				<h2>History</h2>
 				<div className="flex">
@@ -19,12 +19,12 @@ export default function HistoryPannel() {
 					<p>${wallet.balance.toFixed(2)} </p>
 				</div>
 			</div>
-			<div className="flex justify-between p-2 w-full">
+			<div className="flex h-52 overflow-auto justify-between p-2 w-full scrollbar-hide ">
 				{Object.keys(history)
 					.slice(1, 4)
 					.map((key) => (
 						<div className="flex flex-col text-center" key={key}>
-							<p className="text-gray-500 mb-2">{key}</p>
+							<p className="text-gray-400 mb-2">{key}</p>
 							{history[key].length > 0 &&
 								history[key].map((item: any) => (
 									<p key={uuid()}>{key !== "size" ? item : item.toFixed(2)}</p>
@@ -32,7 +32,7 @@ export default function HistoryPannel() {
 						</div>
 					))}
 				<div className="flex flex-col text-center">
-					<p className={`text-gray-${500} mb-2`}>profit</p>
+					<p className={`text-gray-${400} mb-2`}>profit</p>
 					{history.profit.length > 0 &&
 						history.profit.map((item: any) => (
 							<p

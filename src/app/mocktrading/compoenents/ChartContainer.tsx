@@ -24,10 +24,9 @@ export default function ChartContainer({ candles, openTime }: Props) {
 	const candleObj = candles.map((candle, idx) => ({
 		x: idx + 1 - openTime,
 		y: [
-			candle[1].toFixed(0),
-			candle[2].toFixed(0),
-			candle[3].toFixed(0),
-			candle[4].toFixed(0),
+			...candle
+				.slice(1, 5) //
+				.map((num) => Number(num.toFixed(0))),
 		],
 	}));
 	const data = candleObj.slice(startPoint, startPoint + 40);
@@ -56,12 +55,12 @@ export default function ChartContainer({ candles, openTime }: Props) {
 		fetchData();
 	}, []);
 	return (
-		<section className="w-full md:h-48">
+		<section className="w-full ">
 			<Modal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
 			<CandleChart data={data} />
 			<div className="flex flex-col gap-2 justify-around">
-				<div className="flex gap-2">
-					<div className="flex flex-col items-start p-2 justify-between h-16 w-1/2 bg-blue-200 text-sm">
+				<div className="flex gap-4 ">
+					<div className="flex flex-col items-start p-2 justify-between h-16 w-1/2 bg-zinc-800 rounded-md text-sm">
 						<div className="flex justify-between w-full px-2">
 							<p>Current Price :</p>
 							<p>${price}</p>
@@ -72,7 +71,7 @@ export default function ChartContainer({ candles, openTime }: Props) {
 						</div>
 					</div>
 					<button
-						className="flex flex-col items-center justify-center h-16 w-1/2 bg-gray-600 rounded-xl text-2xl text-gray-200"
+						className="bg-btn hover:bg-orange-400 text-white font-bold py-4 px-4 rounded w-1/2 text-2xl "
 						onClick={handleClick}
 					>
 						NEXT({count})

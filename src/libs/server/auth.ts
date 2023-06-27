@@ -1,5 +1,4 @@
 import type { NextAuthOptions } from "next-auth";
-// import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import addUser from "../client/addUser";
 
@@ -20,7 +19,7 @@ export const authOptions: NextAuthOptions = {
 			return session;
 		},
 	},
-	pages: {
-		signIn: "/auth/signin",
-	},
+	// pages: {
+	// 	signIn: "/auth/signin",
+	// },
 };

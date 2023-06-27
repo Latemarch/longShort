@@ -12,7 +12,7 @@ export default function CandleChart({ data }: { data: any }) {
 	const options = chartOptions;
 	console.log(data);
 	return (
-		<div className="bg-gray-100 p-4 px-2 my-2 rounded-xl">
+		<div className="bg-DarkChart p-4 px-2 my-2 rounded-xl">
 			<Chart
 				options={{
 					...options, //
