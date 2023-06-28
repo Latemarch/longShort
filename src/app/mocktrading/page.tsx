@@ -12,10 +12,6 @@ type candles = number[][];
 export default async function mocktraiding() {
 	const openTime = getRandomInt(100, 1239);
 	const fileNumber = getRandomInt(1, 64).toString();
-	// const candles = await fetch(`${url}/api/data/${fileNumber}`);
-	// 	.then((res) => res.json())
-	// 	.then((data) => data.data);
-	// const candles = (await getCandle()) as candles;
 	const candles = await getCandles(fileNumber);
 
 	return (
